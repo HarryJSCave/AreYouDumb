@@ -9,6 +9,10 @@ def home():
 @app.route('/Question/<cat>')
 def question(cat):
     return render_template("question.html", cat = cat)
+
+@app.route('/Question/responce')
+def responce():
+    return render_template("responce.html")
     
 if __name__ == '__main__': 
-    app.run()
+    app.run(debug=True)

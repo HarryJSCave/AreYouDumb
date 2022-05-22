@@ -17,14 +17,23 @@
         <h1>Are you Dumb </h1>
         <button type="button" class="btn btn-primary">Stats</button>
         <button type="button" class="btn btn-primary">Leaderboard</button>
+
+        <h1>Cat</h1>
         <div class="container">
 
-            <button type="button" class="btn btn-primary">Geography</button>
-            <button type="button" class="btn btn-primary">Entertainment</button>
-            <button type="button" class="btn btn-primary">History</button>
-            <button type="button" class="btn btn-primary">Arts & Literature</button>
-            <button type="button" class="btn btn-primary">Science</button>
-            <button type="button" class="btn btn-primary">Sports</button>
+            <a href="{{url_for('question', cat= 'Geography')}}"><button
+                    type="button" class="btn btn-primary">Geography</button></a>
+            <a href="{{url_for('question', cat= 'Entertainment')}}"><button
+                    type="button" class="btn btn-primary">Entertainment</button></a>
+            <a href="{{url_for('question', cat= 'History')}}"><button
+                    type="button" class="btn btn-primary">History</button></a>
+            <a href="{{url_for('question', cat= 'Arts & Literature')}}"><button
+                    type="button" class="btn btn-primary">Arts & Literature</button></a>
+            <a href="{{url_for('question', cat= 'Science')}}"><button
+                    type="button" class="btn btn-primary">Science</button></a>
+            <a href="{{url_for('question', cat= 'Sports')}}"><button
+                    type="button" class="btn btn-primary">Sports</button></a>        
+            
         </div>
 
     </body>
