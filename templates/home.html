@@ -15,25 +15,23 @@
             crossorigin="anonymous">
 
         <h1>Are you Dumb </h1>
-        <a href="{{url_for('question', cat= 'i')}}"><button
+        <a href="{{url_for('stats')}}"><button
                 type="button" class="btn btn-primary">Stats</button></a>
-        <a href="{{url_for('question', cat= 'j')}}"><button
+        <a href="{{url_for('leaderboard')}}"><button
                 type="button" class="btn btn-primary">Leaderboard</button></a>
-
         <h1>Cat</h1>
         <div class="container">
-
-            <a href="{{url_for('question', cat= 'Geography')}}"><button
+            <a href="{{url_for('question', category= 'Geography')}}"><button
                     type="button" class="btn btn-primary">Geography</button></a>
-            <a href="{{url_for('question', cat= 'Entertainment')}}"><button
+            <a href="{{url_for('question', category= 'Entertainment')}}"><button
                     type="button" class="btn btn-primary">Entertainment</button></a>
-            <a href="{{url_for('question', cat= 'History')}}"><button
+            <a href="{{url_for('question', category= 'History')}}"><button
                     type="button" class="btn btn-primary">History</button></a>
-            <a href="{{url_for('question', cat= 'Arts & Literature')}}"><button
+            <a href="{{url_for('question', category= 'Arts & Literature')}}"><button
                     type="button" class="btn btn-primary">Arts & Literature</button></a>
-            <a href="{{url_for('question', cat= 'Science')}}"><button
+            <a href="{{url_for('question', category= 'Science')}}"><button
                     type="button" class="btn btn-primary">Science</button></a>
-            <a href="{{url_for('question', cat= 'Sports')}}"><button
+            <a href="{{url_for('question', category= 'Sports')}}"><button
                     type="button" class="btn btn-primary">Sports</button></a>
         </div>
 

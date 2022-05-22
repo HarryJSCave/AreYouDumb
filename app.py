@@ -32,11 +32,11 @@ def index():
     return "<a href='/login'><button> login </button></a>"
 
 @app.route('/home')
+@login_is_required
 def home():
     return render_template("Home.html") 
 
 @app.route('/question/<category>')
-@login_is_required
 def question(category):
     return render_template("Question.html", cat = category)
 
@@ -45,7 +45,7 @@ def responce():
     return render_template("Responce.html")
 
 @app.route('/leaderboard')
-def leaderbord():
+def leaderboard():
     return render_template("Leaderboard.html")
 
 @app.route('/stats')
