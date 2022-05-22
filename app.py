@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import question,stats,user 
 
 app = Flask(__name__)
 
@@ -11,6 +12,14 @@ def question(cat):
     return render_template("Question.html", cat = cat)
 
 @app.route('/Question/responce')
+def responce():
+    return render_template("Responce.html")
+
+@app.route('/LeaderBoard')
+def responce():
+    return render_template("Responce.html")
+
+@app.route('/Stats')
 def responce():
     return render_template("Responce.html")
     
