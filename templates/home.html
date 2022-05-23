@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="">
-    <style>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
 </style>
-    <script src=""></script>
-    <body>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-            crossorigin="anonymous">
+        <script src=""></script>
+        <body>
+                <link
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+                        crossorigin="anonymous">
 
-        <h1>Are you Dumb </h1>
-        <a href="{{url_for('stats')}}"><button
-                type="button" class="btn btn-primary">Stats</button></a>
-        <a href="{{url_for('leaderboard')}}"><button
-                type="button" class="btn btn-primary">Leaderboard</button></a>
-        <h1>Cat</h1>
-        <div class="container">
-            <a href="{{url_for('question', category= 'Geography')}}"><button
-                    type="button" class="btn btn-primary">Geography</button></a>
-            <a href="{{url_for('question', category= 'Entertainment')}}"><button
-                    type="button" class="btn btn-primary">Entertainment</button></a>
-            <a href="{{url_for('question', category= 'History')}}"><button
-                    type="button" class="btn btn-primary">History</button></a>
-            <a href="{{url_for('question', category= 'Arts & Literature')}}"><button
-                    type="button" class="btn btn-primary">Arts & Literature</button></a>
-            <a href="{{url_for('question', category= 'Science')}}"><button
-                    type="button" class="btn btn-primary">Science</button></a>
-            <a href="{{url_for('question', category= 'Sports')}}"><button
-                    type="button" class="btn btn-primary">Sports</button></a>
-        </div>
+                <h1>Are you Dumb </h1>
+                <a href="{{url_for('stats')}}"><button
+                                type="button" class="btn btn-primary">Stats</button></a>
+                <a href="{{url_for('leaderboard')}}"><button
+                                type="button" class="btn btn-primary">Leaderboard</button></a>
+                <a href="{{url_for('logout')}}"><button
+                                type="button" class="btn btn-primary">logout</button></a>
+                <h1>Cat</h1>
+                <div class="container">
+                        <a href="{{url_for('question', category=
+                                'Geography')}}"><button
+                                        type="button" class="btn btn-primary">Geography</button></a>
+                        <a href="{{url_for('question', category=
+                                'Entertainment')}}"><button
+                                        type="button" class="btn btn-primary">Entertainment</button></a>
+                        <a href="{{url_for('question', category= 'History')}}"><button
+                                        type="button" class="btn btn-primary">History</button></a>
+                        <a href="{{url_for('question', category= 'Arts &
+                                Literature')}}"><button
+                                        type="button" class="btn btn-primary">Arts
+                                        & Literature</button></a>
+                        <a href="{{url_for('question', category= 'Science')}}"><button
+                                        type="button" class="btn btn-primary">Science</button></a>
+                        <a href="{{url_for('question', category= 'Sports')}}"><button
+                                        type="button" class="btn btn-primary">Sports</button></a>
+                </div>
 
-    </body>
+        </body>
 </html>

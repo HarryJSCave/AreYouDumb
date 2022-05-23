@@ -8,9 +8,12 @@ from pip._vendor import cachecontrol
 import google.auth.transport.requests
 #import question,stats,user 
 
+
 app = Flask(__name__)
 app.secret_key = "beans"
 
+#Auth and Login 
+####################################################################
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 GOOGLE_CLIENT_ID = "497353706817-b5sbmr45kftqqtts9puegi19kcohp8kp.apps.googleusercontent.com"
@@ -61,7 +64,10 @@ def logout():
     return redirect("/")
 
 
+################################################################################
 
+# GamePlay 
+################################################################################
 @app.route('/')
 def index():
     return "<a href='/login'><button> login </button></a>"
@@ -73,18 +79,23 @@ def home():
 
 @app.route('/question/<category>')
 def question(category):
+    # fetch question
+    # #build quiz 
     return render_template("Question.html", cat = category)
 
 @app.route('/question/responce')
 def responce():
+    # return postive or negative responce
     return render_template("Responce.html")
 
 @app.route('/leaderboard')
 def leaderboard():
+    # call database and create a model of leaderboard 
     return render_template("Leaderboard.html")
 
 @app.route('/stats')
 def stats():
+    # call database a retrive user stats 
     return render_template("Stats.html")
     
 if __name__ == '__main__': 
