@@ -6,7 +6,7 @@ from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
-#import question,stats,user 
+import quiz
 
 
 app = Flask(__name__)
@@ -75,16 +75,22 @@ def index():
 @app.route('/home')
 @login_is_required
 def home():
+
     return render_template("Home.html") 
 
 @app.route('/question/<category>')
-def question(category):
+def askQuestion(category):
     # fetch question
-    # #build quiz 
-    return render_template("Question.html", cat = category)
+    # #build question 
+    txt = "what is 1+1"
+    answer = 2
+    options  = ["1","2","3","I give up on Life"]
+
+    question = quiz.Question(txt,answer,options,category) 
+    return render_template("Question.html", question = question)
 
 @app.route('/question/responce')
-def responce():
+def responce(answer):
     # return postive or negative responce
     return render_template("Responce.html")
 

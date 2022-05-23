@@ -13,18 +13,14 @@
             rel="stylesheet"
             integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
             crossorigin="anonymous">
-        <h1>{{cat}}</h1>
+        <h1>{{question.category}}</h1>
         <h1>What's 1+1</h1>
         <div class="container">
+            {%for opt in question.options%}
+            <a href="{{url_for('responce', answer = opt)}}"><button
+                    type="button" class="btn btn-primary"> {{opt}}</button></a>
+            {%endfor%}
 
-            <a href="{{url_for('responce')}}"><button
-                    type="button" class="btn btn-primary">1</button></a>
-            <a href="{{url_for('responce')}}"><button
-                    type="button" class="btn btn-primary">2</button></a>
-            <a href="{{url_for('responce')}}"><button
-                    type="button" class="btn btn-primary">3</button></a>
-            <a href="{{url_for('responce')}}"><button
-                    type="button" class="btn btn-primary">4</button></a>
 
         </div>
 
