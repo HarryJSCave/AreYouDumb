@@ -15,6 +15,7 @@ for row in cursor.fetchall():
     print(row)
 
 
+# Close connection
 cursor.close()
 connection.close()
 
