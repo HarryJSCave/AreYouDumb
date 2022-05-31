@@ -26,7 +26,6 @@ class Question:
         self.options = options
         self.category = category
 
-    
-    
+#these are just test comments
         
 
