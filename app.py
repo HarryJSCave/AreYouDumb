@@ -78,16 +78,21 @@ def home():
 
     return render_template("Home.html") 
 
-@app.route('/question/<category>')
+@app.route('/question/<category>', methods=['GET','POST'])
 def askQuestion(category):
     # fetch question
     # #build question 
-    txt = "what is 1+1"
-    answer = 2
-    options  = ["1","2","3","I give up on Life"]
+    if request.method == 'GET':
+        txt = "what is 1+1"
+        answer = 2
+        options  = ["1","2","3","I give up on Life"]
 
-    question = quiz.Question(txt,answer,options,category) 
-    return render_template("Question.html", question = question)
+        question = quiz.Question(txt,answer,options,category) 
+        return render_template("Question.html", question = question)
+    else:
+        result = 1
+        return render_template('Responce.html')
+
 
 @app.route('/question/responce')
 def responce(answer):

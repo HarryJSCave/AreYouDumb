@@ -16,12 +16,11 @@
         <h1>{{question.category}}</h1>
         <h1>What's 1+1</h1>
         <div class="container">
-            {%for opt in question.options%}
-            <a href="{{url_for('responce', answer = opt)}}"><button
-                    type="button" class="btn btn-primary"> {{opt}}</button></a>
-            {%endfor%}
-
-
+            <form action="/question/{{question.category}}" method="post">
+            {% for answer in question.options %}
+                <input type="submit" id="{{ answer }}" name="answer" value="{{ answer }}"><br>
+                {% endfor %}
+            </form>
         </div>
 
     </body>

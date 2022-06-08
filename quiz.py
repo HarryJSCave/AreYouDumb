@@ -1,4 +1,6 @@
 from mimetypes import init
+from flask_wtf import FlaskForm
+from wtforms   import  SubmitField
 
 
 class Question:
@@ -11,4 +13,6 @@ class Question:
     
     
         
+class QuestionForm(FlaskForm):
+    selection = SubmitField('Question')
 
