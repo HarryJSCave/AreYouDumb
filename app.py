@@ -1,5 +1,6 @@
 import os
 import pathlib
+from unittest import result
 import requests
 from flask import Flask, abort, redirect, render_template, request, session
 from google.oauth2 import id_token
@@ -82,16 +83,15 @@ def home():
 def askQuestion(category):
     # fetch question
     # #build question 
+    
+    question = quiz.Question(category) 
+    
     if request.method == 'GET':
-        txt = "what is 1+1"
-        answer = 2
-        options  = ["1","2","3","I give up on Life"]
-
-        question = quiz.Question(txt,answer,options,category) 
         return render_template("Question.html", question = question)
     else:
-        result = 1
-        return render_template('Responce.html')
+        result = quiz.Result(question, request.form['answer']) 
+        
+        return render_template('Responce.html', result = result)
 
 
 @app.route('/question/responce')

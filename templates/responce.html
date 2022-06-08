@@ -13,8 +13,12 @@
             rel="stylesheet"
             integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
             crossorigin="anonymous">
-            
-            <a href="{{url_for('login')}}"><h1>You got the answer correct</h1> </a>
+            {% if result.isCorrect() %}
+                <a href="/home"><h1>Well done you are smart</h1> </a>
+            {% else %}
+                <a href="/home"><h1>You are dumb</h1> </a>
+            {% endif %}
+
         <div class="container">
 
             

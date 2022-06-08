@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <meta charset="UTF-8">
     <title>question</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="">
-    <style>
-</style>
-    <script src=""></script>
+ 
     <body>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-            crossorigin="anonymous">
+            <div>
+                <h2 class="time" id="timer">0</h2>
+                
+                <script type="application/javascript">
+                    const timerElement = document.getElementById("timer");
+                    var timerCounter = 0
+                    const interval = setInterval(() => {
+                        timerCounter = timerCounter + 1;
+                        
+                        timerElement.innerText = timerCounter + "ms";
+                    }, 100);
+                </script>
+                
+            </div>
+        
         <h1>{{question.category}}</h1>
         <h1>What's 1+1</h1>
         <div class="container">
