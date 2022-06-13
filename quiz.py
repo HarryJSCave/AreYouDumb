@@ -1,7 +1,7 @@
 from mimetypes import init
 from flask_wtf import FlaskForm
 from wtforms   import  SubmitField
-#import pyodbc
+import pyodbc
 
 # Trusted Connection to Named Instance
 # PLEASE DON'T CHANGE ANY OF THIS FOR NOW OR I MIGHT CRY
