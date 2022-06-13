@@ -9,7 +9,7 @@
         <link rel="canonical"
             href="https://getbootstrap.com/docs/5.2/examples/cover/">
 
-        <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{url_for('static',filename='assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
         <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -63,7 +63,7 @@
       }
     </style>
         <!-- Custom styles for this template -->
-        <link href="app.css" rel="stylesheet">
+        <link href="{{url_for('static', filename= 'app.css')}}" rel="stylesheet">
     </head>
     <body class="d-flex h-100 text-center text-white bg-dark">
 
