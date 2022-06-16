@@ -1,5 +1,6 @@
 import os
 import pathlib
+from unittest import result
 import requests
 from flask import Flask, abort, redirect, render_template, request, session
 from google.oauth2 import id_token
@@ -10,6 +11,7 @@ import quiz
 
 
 app = Flask(__name__)
+
 app.secret_key = "beans"
 
 #Auth and Login 
@@ -78,16 +80,20 @@ def home():
 
     return render_template("Home.html") 
 
-@app.route('/question/<category>')
+@app.route('/question/<category>', methods=['GET','POST'])
 def askQuestion(category):
     # fetch question
     # #build question 
-    txt = "what is 1+1"
-    answer = 2
-    options  = ["1","2","3","I give up on Life"]
+    
+    question = quiz.Question(category) 
+    
+    if request.method == 'GET':
+        return render_template("Question.html", question = question)
+    else:
+        result = quiz.Result(question, request.form['answer']) 
+        
+        return render_template('Responce.html', result = result)
 
-    question = quiz.Question(txt,answer,options,category) 
-    return render_template("Question.html", question = question)
 
 @app.route('/question/responce')
 def responce(answer):
