@@ -72,6 +72,7 @@ def logout():
 ################################################################################
 @app.route('/')
 def index():
+    return render_template("login.html") 
     return "<a href='/login'><button> login </button></a>"
 
 @app.route('/home')
@@ -88,10 +89,14 @@ def askQuestion(category):
     question = quiz.Question(category) 
     
     if request.method == 'GET':
-        return render_template("Question.html", question = question)
+        if (question.alreadyAnswered()):
+            return render_template("AlreadyCompleted.html", question = question)
+        else:
+            return render_template("Question.html", question = question)
+
+            
     else:
         result = quiz.Result(question, request.form['answer']) 
-        
         return render_template('Responce.html', result = result)
 
 

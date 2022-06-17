@@ -31,6 +31,9 @@ class Question:
        self.answer = 2
        self.options  = ["1","2","3","I give up on Life"]
 
+    def alreadyAnswered(self):
+        return False
+
 
 
 class Result:
