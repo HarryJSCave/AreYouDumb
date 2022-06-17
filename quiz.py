@@ -39,16 +39,8 @@ class Question:
 class Result:
     def __init__(self, question, userAnswer):
         self.question = question
-        self.userAnswer = userAnswer 
+        self.userAnswer = userAnswer
         self.timeTaken  = 0
-    
+
     def isCorrect(self):
         return  str(self.question.answer) == str(self.userAnswer)
-
-
-        
-
-
-
-    
-
