@@ -97,7 +97,7 @@
                 
                 <p class="lead">
                     <div>
-                        <h1>What's 1+1</h1>
+                        <h1>{{ question.text }}</h1>
                         <div class="container">
                             <form action="/question/{{question.category}}" method="post">
                             {% for answer in question.options %}

@@ -6,13 +6,16 @@ from flask import Flask, abort, redirect, render_template, request, session
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
-import google.auth.transport.requests
-import quiz
-
-
+import quiz 
+from flask_mysqldb import MySQL
+ 
 app = Flask(__name__)
-
 app.secret_key = "beans"
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'dc_2060'
+mysql = MySQL(app)
 
 #Auth and Login 
 ####################################################################
@@ -38,6 +41,8 @@ def login_is_required(function):
 def login():
     authorization_url, state = flow.authorization_url()
     session["state"] = state
+   
+
     return redirect(authorization_url)
 
 @app.route('/callback')
@@ -87,11 +92,11 @@ def askQuestion(category):
     # #build question 
     
     question = quiz.Question(category) 
-    
     if request.method == 'GET':
         if (question.alreadyAnswered()):
             return render_template("AlreadyCompleted.html", question = question)
         else:
+            
             return render_template("Question.html", question = question)
 
             

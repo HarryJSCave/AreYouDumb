@@ -1,4 +1,5 @@
-/*--CREATE DATABASE DC2060;*/
+/*--CREATE DATABASE DC2060;
+*/
 DROP TABLE questions;
 
 
