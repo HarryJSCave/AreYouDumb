@@ -10,23 +10,29 @@ class Question:
         self.category = category
         self.createQuestion()
 
+        # Indexing for the database 
+        self.dbID   = 0
+        self.dbtext = 1
+        self.dba1   = 2
+        self.dba2   = 3
+        self.dba3   = 4
+        self.dba4   = 5
+        self.dbca   = 6
+
     def createQuestion(self):
-        c = mysql.connection.cursor()
+        c = DatabaseConnection()
         query = "SELECT * from questions where Category = \'{}\'".format(self.category) 
-        c.execute(query)
-        data = c.fetchall()
-        c.close()
-        print(data[0])
-        self.text = data[0][0]
-        self.answer = data[0][5]
-        self.options  = [data[0][1],data[0][2],data[0][3],data[0][4]]
+        data = c.query(query)
+        question =  self.getQuestionOfTheDay(self, data)
+        self.text = question[self.dbtext]
+        self.answer = question[self.dbca]
+        self.options  = [question[self.dba1],question[self.dba2],question[self.dba3],question[self.dba4]]
     
-
-
     def alreadyAnswered(self):
         return False
 
-
+    def getQuestionOfTheDay(self,data):
+        return data[0]
 
 class Result:
     def __init__(self, question, userAnswer):
@@ -36,3 +42,18 @@ class Result:
 
     def isCorrect(self):
         return  str(self.question.answer) == str(self.userAnswer)
+
+    def sendToDatabase():
+        c = DatabaseConnection()
+        query =  "INSERT INTO user_responses VALUES({}, {}, {}, {}, {}, {}, {});".format()
+
+
+class DatabaseConnection: 
+    def __init__(self):
+        self.connection = mysql.connection.cursor()
+
+    def query(self, query):
+        self.connection.execute(query)
+        data = self.connection.fetchall()
+        self.connection.close()
+        return data
