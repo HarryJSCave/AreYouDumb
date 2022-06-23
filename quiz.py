@@ -1,4 +1,5 @@
 from mimetypes import init
+from flask import Flask, abort, redirect, render_template, request, session
 from flask_wtf import FlaskForm
 from wtforms   import  SubmitField
 from flask_mysqldb import MySQL
@@ -8,6 +9,10 @@ from app import mysql
 class Question:
     def __init__(self, category):
         self.category = category
+        self.id = 0
+        self.text = ""
+        self.answer = ""
+        self.options = []
         self.createQuestion()
 
         # Indexing for the database 
@@ -43,11 +48,13 @@ class Result:
     def isCorrect(self):
         return  str(self.question.answer) == str(self.userAnswer)
 
-    def sendToDatabase():
+    def sendToDatabase(self):
         c = DatabaseConnection()
+        userID = session["google_id"]
+        questionID = self.question.id
         query =  "INSERT INTO user_responses VALUES({}, {}, {}, {}, {}, {}, {});".format()
 
-
+# put this in the 
 class DatabaseConnection: 
     def __init__(self):
         self.connection = mysql.connection.cursor()

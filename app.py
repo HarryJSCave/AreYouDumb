@@ -6,6 +6,7 @@ from flask import Flask, abort, redirect, render_template, request, session
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
+import google.auth.transport.requests
 import quiz 
 from flask_mysqldb import MySQL
  
@@ -61,6 +62,9 @@ def callback():
         audience = GOOGLE_CLIENT_ID
     )
 
+    print("----------------------")
+    print(id_info.get("email"))
+
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
     return redirect("/home")
@@ -78,7 +82,7 @@ def logout():
 @app.route('/')
 def index():
     return render_template("login.html") 
-    return "<a href='/login'><button> login </button></a>"
+    
 
 @app.route('/home')
 @login_is_required
@@ -102,13 +106,13 @@ def askQuestion(category):
             
     else:
         result = quiz.Result(question, request.form['answer']) 
-        return render_template('response.html', result = result)
+        return render_template('Responce.html', result = result)
 
 
-@app.route('/question/response')
-def response(answer):
-    # return postive or negative response
-    return render_template("response.html")
+@app.route('/question/responce')
+def responce(answer):
+    # return postive or negative responce
+    return render_template("Responce.html")
 
 @app.route('/leaderboard')
 def leaderboard():
