@@ -1,9 +1,14 @@
 from mimetypes import init
+from MySQLdb import Date
 from flask import Flask, abort, redirect, render_template, request, session
 from flask_wtf import FlaskForm
 from wtforms   import  SubmitField
 from flask_mysqldb import MySQL
 from app import mysql
+
+import datetime
+
+import time
 
 
 class Question:
@@ -44,6 +49,7 @@ class Result:
         self.question = question
         self.userAnswer = userAnswer
         self.timeTaken  = 0
+        self.date = datetime.date.today()
 
     def isCorrect(self):
         return  str(self.question.answer) == str(self.userAnswer)
@@ -52,15 +58,25 @@ class Result:
         c = DatabaseConnection()
         userID = session["google_id"]
         questionID = self.question.id
-        query =  "INSERT INTO user_responses VALUES({}, {}, {}, {}, {}, {}, {});".format()
+        anwser = self.userAnswer
+        time = self.timeTaken
+        date = self.date
+        correct = self.isCorrect()
+        query =  "INSERT INTO user_responses VALUES({}, {}, {}, {}, {}, {});".format(userID, questionID, anwser, time, date, correct)
 
-# put this in the 
+# put this in the database.py and fix 
 class DatabaseConnection: 
     def __init__(self):
         self.connection = mysql.connection.cursor()
 
     def query(self, query):
+        self.connection = mysql.connection.cursor()
         self.connection.execute(query)
         data = self.connection.fetchall()
         self.connection.close()
         return data
+    
+    def insert(self, query):
+        self.connection = mysql.connection.cursor()
+        self.connection.execute(query)
+        self.connection.close()
