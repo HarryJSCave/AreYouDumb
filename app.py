@@ -123,6 +123,7 @@ def leaderboard():
 @app.route('/stats')
 def stats():
     # call database a retrive user stats 
+    
     return render_template("Stats.html")
     
 if __name__ == '__main__': 

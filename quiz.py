@@ -6,6 +6,7 @@ from wtforms   import  SubmitField
 from flask_mysqldb import MySQL
 from app import mysql
 import util
+from database import DatabaseConnection
 
 import datetime
 
@@ -13,7 +14,7 @@ import time
 
 
 class Question:
-    def __init__(self, category):
+    ef __init__(self,d category):
         # Indexing for the database 
         self.dbID   = 0
         self.dbtext = 1
@@ -77,26 +78,4 @@ class Result:
         query =  "INSERT INTO user_responses (`UserID`, `QuestionID`, `Answer`, `TimeTaken`, `DateTaken`, `Correct`) VALUES ({}, {}, \'{}\', \'{}\', \'{}\', b\'{}\');".format(userID, questionID, anwser, time, date, correct)
         c.insert(query)
 
-# put this in the database.py and fix 
-class DatabaseConnection: 
-    def __init__(self):
-        sql = "sql"
-
-    def query(self, query):
-        self.cursor = mysql.connection.cursor()
-        self.cursor.execute(query)
-        data = self.cursor.fetchall()
-        self.cursor.close()
-        return data
-    
-    def insert(self, query):
-        print(query)
-        try:
-            self.cursor = mysql.connection.cursor()
-            self.cursor.execute(query)
-            mysql.connection.commit()
-        except mysql.connector.Error as error:
-            print("Failed to insert into MySQL table {}".format(error))
-        finally:
-            self.cursor.close()
        
