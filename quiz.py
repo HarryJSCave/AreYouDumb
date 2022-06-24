@@ -14,7 +14,7 @@ import time
 
 
 class Question:
-    ef __init__(self,d category):
+    def __init__(self,d category):
         # Indexing for the database 
         self.dbID   = 0
         self.dbtext = 1
