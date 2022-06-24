@@ -20,7 +20,7 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
+  max-width: 500em;
 }
 
 /*
@@ -44,4 +44,22 @@ body {
 .nav-masthead .active {
   color: rgb(238, 58, 13);
   border-bottom-color: rgb(255, 255, 255);
+}
+
+#leaderboard {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#Geography {
+  margin-left: 10%;
+}
+
+#Entertainment {
+  margin-left: 50%;
+}
+
+#column3 {
+  background-color: #f497f1;
 }
