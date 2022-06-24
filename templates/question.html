@@ -83,15 +83,7 @@
                 <div>
                     <h1 class="time" id="timerMs">0</h1>
                     
-                    <script type="application/javascript">
-                        const timerMs = document.getElementById("timerMs");
-                        var timerCounter = 0
-                        const interval = setInterval(() => {
-                            timerCounter = timerCounter + 1;
-
-                            timerMs.innerText = timerCounter/10 + "s";
-                        }, 100);
-                    </script>
+                    
                     
                 </div>
                 
@@ -101,8 +93,9 @@
                         <div class="container">
                             <form action="/question/{{question.category}}" method="post">
                             {% for answer in question.options %}
-                                <input type="submit" id="{{ answer }}" name="answer" value="{{ answer }}"><br>
+                                <input  type="submit" id="{{ answer }}" name="answer" value="{{ answer }}"><br>
                                 {% endfor %}
+                                <input type="hidden" id = "timerForm"  name="timerForm"  >
                             </form>
                         </div>
                     </div>
@@ -112,6 +105,18 @@
             <footer class="mt-auto text-white-50">
                 <p>DC2060</p>
             </footer>
+
+            <script type="application/javascript">
+              const timerMs = document.getElementById("timerMs");
+              var timerCounter = 0.0
+              const timerForm = document.getElementById("timerForm");
+              const interval = setInterval(() => {
+                  timerCounter = timerCounter + 1;
+                  timerMs.innerText = parseFloat(timerCounter/10).toFixed(1) + "s";
+                  timerForm.value = parseFloat(timerCounter/10).toFixed(1)           
+              }, 100);
+          </script>
+
         </div>
 
 

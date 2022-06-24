@@ -76,7 +76,7 @@ def logout():
 
 
 ################################################################################
-
+#
 # GamePlay 
 ################################################################################
 @app.route('/')
@@ -105,14 +105,15 @@ def askQuestion(category):
 
             
     else:
-        result = quiz.Result(question, request.form['answer']) 
-        return render_template('Responce.html', result = result)
+        result = quiz.Result(question, request.form['answer'], request.form['timerForm']) 
+        result.sendToDatabase()
+        return render_template('response.html', result = result)
 
 
-@app.route('/question/responce')
-def responce(answer):
-    # return postive or negative responce
-    return render_template("Responce.html")
+@app.route('/question/response')
+def response(answer):
+    # return postive or negative response
+    return render_template("response.html")
 
 @app.route('/leaderboard')
 def leaderboard():

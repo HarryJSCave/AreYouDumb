@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms   import  SubmitField
 from flask_mysqldb import MySQL
 from app import mysql
+import util
 
 import datetime
 
@@ -13,13 +14,6 @@ import time
 
 class Question:
     def __init__(self, category):
-        self.category = category
-        self.id = 0
-        self.text = ""
-        self.answer = ""
-        self.options = []
-        self.createQuestion()
-
         # Indexing for the database 
         self.dbID   = 0
         self.dbtext = 1
@@ -28,12 +22,22 @@ class Question:
         self.dba3   = 4
         self.dba4   = 5
         self.dbca   = 6
+        
+        # 
+        self.category = category
+        self.id = 0
+        self.text = ""
+        self.answer = ""
+        self.options = []
+        self.createQuestion()
+
+        
 
     def createQuestion(self):
         c = DatabaseConnection()
         query = "SELECT * from questions where Category = \'{}\'".format(self.category) 
         data = c.query(query)
-        question =  self.getQuestionOfTheDay(self, data)
+        question =  self.getQuestionOfTheDay(data)
         self.text = question[self.dbtext]
         self.answer = question[self.dbca]
         self.options  = [question[self.dba1],question[self.dba2],question[self.dba3],question[self.dba4]]
@@ -42,13 +46,19 @@ class Question:
         return False
 
     def getQuestionOfTheDay(self,data):
-        return data[0]
+        date = datetime.date.today()
+        dateNum = self.convertDateToNum(date)
+        questionNum =  (len(data)-1)%dateNum
+        return data[questionNum]
+
+    def convertDateToNum(self, date):
+        return date.day + date.month + date.year 
 
 class Result:
-    def __init__(self, question, userAnswer):
+    def __init__(self, question, userAnswer, time):
         self.question = question
         self.userAnswer = userAnswer
-        self.timeTaken  = 0
+        self.timeTaken  = time
         self.date = datetime.date.today()
 
     def isCorrect(self):
@@ -60,23 +70,33 @@ class Result:
         questionID = self.question.id
         anwser = self.userAnswer
         time = self.timeTaken
-        date = self.date
-        correct = self.isCorrect()
-        query =  "INSERT INTO user_responses VALUES({}, {}, {}, {}, {}, {});".format(userID, questionID, anwser, time, date, correct)
+        print(self.date)
+        date =self.date
+        correct = util.boolToBit(self.isCorrect())
+        
+        query =  "INSERT INTO user_responses (`UserID`, `QuestionID`, `Answer`, `TimeTaken`, `DateTaken`, `Correct`) VALUES ({}, {}, \'{}\', \'{}\', \'{}\', b\'{}\');".format(userID, questionID, anwser, time, date, correct)
+        c.insert(query)
 
 # put this in the database.py and fix 
 class DatabaseConnection: 
     def __init__(self):
-        self.connection = mysql.connection.cursor()
+        sql = "sql"
 
     def query(self, query):
-        self.connection = mysql.connection.cursor()
-        self.connection.execute(query)
-        data = self.connection.fetchall()
-        self.connection.close()
+        self.cursor = mysql.connection.cursor()
+        self.cursor.execute(query)
+        data = self.cursor.fetchall()
+        self.cursor.close()
         return data
     
     def insert(self, query):
-        self.connection = mysql.connection.cursor()
-        self.connection.execute(query)
-        self.connection.close()
+        print(query)
+        try:
+            self.cursor = mysql.connection.cursor()
+            self.cursor.execute(query)
+            mysql.connection.commit()
+        except mysql.connector.Error as error:
+            print("Failed to insert into MySQL table {}".format(error))
+        finally:
+            self.cursor.close()
+       
