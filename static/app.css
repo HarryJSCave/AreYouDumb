@@ -54,6 +54,13 @@ body {
   border: 3px solid #FFFFFF;
   background-color: white;
 }
+table, th, td {
+  border: 1px solid;
+}
+
+table {
+  width: 100%;
+}
 
 #leaderboard {
   content: "";
