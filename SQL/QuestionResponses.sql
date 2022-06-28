@@ -11,7 +11,7 @@ INSERT INTO question_responses VALUES ("You're not the stupidest person alive, b
 INSERT INTO question_responses VALUES("You couldn't pour water out of a boot with the instructions on the heel.", "N");
 INSERT INTO question_responses VALUES("It's impossible to underestimate you.", "N");
 INSERT INTO question_responses VALUES("You have one braincell and it's bouncing around like a screensaver.", "N");
-INSERT INTO question_responses VALUES("Internet Explorer would have worked quickerthan you.", "N");
+INSERT INTO question_responses VALUES("Internet Explorer would have worked quicker than you.", "N");
 INSERT INTO question_responses VALUES("The wheel is spinning but the hamster's dead.", "N");
 INSERT INTO question_responses VALUES("At this point you can only impress me.", "N");
 INSERT INTO question_responses VALUES("You're doing amazing sweetie", "P");
