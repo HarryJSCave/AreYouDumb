@@ -24,4 +24,18 @@ class UserStats:
             }
         return stats
 
+class Leaderboard:
+    def __init__(self):
+        self.board =  { "Georaphy":        self.getRanking("Geography"), #[playername:score]
+                        "Entertainment":  self.getRanking("Entertainment"), 
+                        "History":        self.getRanking("Histort"),
+                        "Art":            self.getRanking("Art"),
+                        "Science":        self.getRanking("Science"),
+                        "Sport":          self.getRanking("Sports")}
+        pass
+
+    def getRanking(self, category):
+        ranking = []
+        ranking = [("first",1000),("2",5000),("3",200),("4",100), ("5",100),("6",100),("4345",100) ]
+        return ranking
     

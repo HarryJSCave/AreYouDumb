@@ -119,7 +119,11 @@ def response(answer):
 @app.route('/leaderboard')
 def leaderboard():
     # call database and create a model of leaderboard 
-    return render_template("Leaderboard.html")
+    leaderboard = userStats.Leaderboard() 
+   
+    length = min(20,(len(leaderboard.board.keys())+1)) 
+    print(length)
+    return render_template("Leaderboard.html", length = length, leaderboard = leaderboard)
 
 @app.route('/stats')
 def stats():

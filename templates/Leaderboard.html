@@ -12,7 +12,7 @@
     <link
       href="{{url_for('static',filename='assets/dist/css/bootstrap.min.css')}}"
       rel="stylesheet">
-   
+
     <!-- Header -->
     <link href="{{url_for('static', filename= 'app.css')}}"
       rel="stylesheet">
@@ -37,55 +37,44 @@
         </div>
       </header>
 
-     
-        <div id="leaderboard">
 
-          <table>
-            <tr>
-              <th> Geography </th>
-              <th> Entertainment </th>
-              <th> History </th>
-              <th> Arts & Literature </th>
-              <th> Science </th>
-              <th> Sports </th>
+      <div id="leaderboard">
 
-            </tr>
-            <tr class = "fst" >
-              <td class = Geography> Player </td>
-              <td class = Entertainment> Maria Anders </td>
-              <td class = History> Player </td>
-              <td class = Arts&Literature> Player </td>
-              <td class = Science> Player </td>
-              <td class = Sports> Player </td>
-            
-            </tr>
-            <tr class = "snd">
-              <td class = Geography> Player </td>
-              <td class = Entertainment> Maria Anders </td>
-              <td class = History> Player </td>
-              <td class = Arts&Literature> Player </td>
-              <td class = Science> Player </td>
-              <td class = Sports> Player </td>
-            </tr>
-            <tr class = "third">
-              <td class = Geography> Player </td>
-              <td class = Entertainment> Maria Anders </td>
-              <td class = History> Player </td>
-              <td class = Arts&Literature> Player </td>
-              <td class = Science> Player </td>
-              <td class = Sports> Player </td>
-            </tr>
-            <tr class = "forloop">
-              <td class = Geography> Player </td>
-              <td class = Entertainment> Maria Anders </td>
-              <td class = History> Player </td>
-              <td class = Arts&Literature> Player </td>
-              <td class = Science> Player </td>
-              <td class = Sports> Player </td>
-            </tr>
-          </table>
-        </div>
-      
+        <table>
+          <tr>
+            <th> Geography </th>
+            <th> Entertainment </th>
+            <th> History </th>
+            <th> Arts & Literature </th>
+            <th> Science </th>
+            <th> Sports </th>
+
+          </tr>
+          <tr class="fst">
+            {% for category, ranking in leaderboard.board.items() %}
+            <td class= {{category}}> {{ranking[0][0]}}:{{ranking[0][1]}} </td>
+            {% endfor %}
+          </tr>
+          <tr class="snd">
+            {% for category, ranking in leaderboard.board.items() %}
+            <td class= {{category}}> {{ranking[1][0]}}:{{ranking[1][1]}} </td>
+            {% endfor %}
+          </tr>
+          <tr class="third">
+            {% for category, ranking in leaderboard.board.items() %}
+            <td class= {{category}}> {{ranking[2][0]}}:{{ranking[2][1]}} </td>
+            {% endfor %}
+          </tr>
+          {% for i in range(3, length)%}
+          <tr class="forloop">
+            {% for category, ranking in leaderboard.board.items() %}
+              <td class= {{category}}> {{ranking[i][0]}}:{{ranking[i][1]}} </td>
+              {% endfor %}
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
 
       <footer class="mt-auto text-white-50">
         <p>DC2060</p>
