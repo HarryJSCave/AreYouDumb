@@ -22,7 +22,7 @@ INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('What colour is grass?', 'Yellow', 'Green', 'Red', 'Blue', 'Green', 'Science');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Who is often called the father of the computer?', 'Charles Babbage', 'Alan Turing', 'Leonardo da Vinci', 'Tim Berners-Lee', 'Charles Babbage', 'Science');
-INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
+INSERT INTO questions(QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Who discovered penicillin?', 'Thomas Edison', 'Alexander Fleming', 'Florence Nightingale', 'Christian Barnard', 'Alexander Fleming', 'Science');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES ("What's the body's largest organ?", 'Heart', 'Brain', 'Skin', 'Liver', 'Skin', 'Science');
@@ -32,7 +32,7 @@ VALUES ('What is the planet closest to the sun?', 'Venus', 'Mercury', 'Mars', 'S
 /*--Entertainment questions*/
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES("What is Hawkeye's real name?", 'Clint Barton', 'Tony Stark', 'Bruce Wayne', 'Oliver Queen', 'Clint Barton', 'Entertainment');
-INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
+INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category) 
 VALUES("What was Superman's birth name?", 'Christopher Nolan', 'Clark Kent', 'Zeus', 'Kal-El', 'Kal-El', 'Entertainment');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('What does DC stand for?', 'Discover Characters', 'Detective Comics', 'Deadly Comics', "Don't Care", 'Detective Comics', 'Entertainment');
@@ -46,7 +46,7 @@ INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('How many soccer players should each team have on the field at the start of the match?', '11', '12', '10', '9', '11', 'Sports');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Who is the youngest winner of a Formula 1 World Championship?', 'Lewis Hamilton', 'Kimi Raikkonen', 'Sebastian Vettel', 'Michael Schumacher', 'Sebastian Vettel', 'Sports');
-INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
+INSERT INTO questions(QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES("Which boxer was known as 'The Greatest' and 'The People's Champion'?", 'Bruce Lee', 'Mike Tyson', 'David Haye', 'Muhammad Ali', 'Muhammad Ali', 'Sports');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES ('What nationality was Ayrton Senna?', 'French', 'Portuguese', 'German', 'Brazilian', 'Brazilian', 'Sports');
@@ -59,7 +59,7 @@ INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Which two countries share the longest international border?', 'Canada/USA', 'China/Mongolia', 'Russia/Kazakhstan', 'China/India', 'Canada/USA', 'Geography');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('What is the capital city of New Zealand?', 'Christchurch', 'Wellington', 'Auckland', 'Tauranga', 'Wellington', 'Geography');
-INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
+INSERT INTO questions(QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES("What is the world's longest river?", 'The Amazon', 'The Congo River', 'The Nile', 'The Yangtze River', 'The Nile', 'Geography');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES ('What is the smallest US state?', 'Hawaii', 'Rhode Island', 'Connecticut', 'Maryland', 'Rhode Island', 'Geography');
@@ -86,4 +86,3 @@ INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Who wrote The Merchant of Venice?', 'Jane Austen', 'William Shakespeare', 'Paul Allen', 'John Steinbeck', 'William Shakespeare', 'Art & Literature');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Claude Monet is most known for his paintings of what?', 'People', 'Sunflowers', 'Landscapes', 'Water lilies', 'Water lilies', 'Art & Literature');
-
