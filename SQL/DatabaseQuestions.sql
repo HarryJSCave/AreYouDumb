@@ -36,7 +36,7 @@ INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES("What was Superman's birth name?", 'Christopher Nolan', 'Clark Kent', 'Zeus', 'Kal-El', 'Kal-El', 'Entertainment');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('What does DC stand for?', 'Discover Characters', 'Detective Comics', 'Deadly Comics', "Don't Care", 'Detective Comics', 'Entertainment');
-INSERT INTO questions 
+INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES ('Who was the most streamed female artist of 2019?', 'Ariana Grande', 'Rihanna', 'Billie Eilish', 'Taylor Swift', 'Billie Eilish', 'Entertainment');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES ('Who had the best-selling album of 2020?', 'BTS', 'Billie Eilish', 'The Weeknd', 'Harry Styles', 'BTS', 'Entertainment');
@@ -74,6 +74,10 @@ INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('What was the last dynasty of China?', 'Ming', 'Tang', 'Qing', 'Qin', 'Qing', 'History');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Which famous battle took place on 18th June 1815?', 'Waterloo', 'Agincourt', 'Trafalgar', 'Turnbridge', 'Waterloo', 'History');
+INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
+VALUES ('What year was the Great Fire of London?', '1649', '1672', '1655', '1666', '1666', 'History');
+INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
+VALUES ('What year was the Wall Street Crash?', '1926', '1927', '1929', '1928', '1929', 'History');
 
 /*--Art & Literature questions*/
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
@@ -82,7 +86,4 @@ INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Who wrote The Merchant of Venice?', 'Jane Austen', 'William Shakespeare', 'Paul Allen', 'John Steinbeck', 'William Shakespeare', 'Art & Literature');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
 VALUES('Claude Monet is most known for his paintings of what?', 'People', 'Sunflowers', 'Landscapes', 'Water lilies', 'Water lilies', 'Art & Literature');
-INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
-VALUES ('What year was the Great Fire of London?', '1649', '1672', '1655', '1666', '1666', 'History');
-INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
-VALUES ('What year was the Wall Street Crash?', '1926', '1927', '1929', '1928', '1929', 'History');
+
