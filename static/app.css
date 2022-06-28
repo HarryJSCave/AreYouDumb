@@ -63,19 +63,41 @@ table {
 }
 
 #leaderboard {
-  content: "";
-  display: table;
-  clear: both;
+
+    border: 1px solid;
+    width: 100%;
+  
 }
 
-#Geography {
+.fst
+{
+  background-color: gold;
+  color: #333;
+  font-size: 35px;
+
+}
+.snd
+{
+  background-color: silver;
+  color: #333;
+  font-size: 25px;
+ 
+}
+.third
+{
+  background-color: rgb(216, 123, 35);
+  color: #333;
+  font-size: 20px;
+}
+
+.Geography {
   margin-left: 10%;
 }
 
-#Entertainment {
+.Entertainment {
   margin-left: 50%;
 }
 
-#column3 {
+.column3 {
   background-color: #f497f1;
 }
