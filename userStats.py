@@ -1,3 +1,5 @@
+from database import DatabaseConnection
+
 class UserStats:
     def __init__(self, id):
         self.id = id
@@ -22,6 +24,11 @@ class UserStats:
             "totalScore": 10000,
             "averageTime":  6.56
             }
+
+        c = DatabaseConnection()
+        query = "SELECT * from questions where Category = \'{}\'".format(self.category) 
+        
+        data = c.query(query)
         return stats
 
 class Leaderboard:
