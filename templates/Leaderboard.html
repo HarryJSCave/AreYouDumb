@@ -12,7 +12,7 @@
     <link
       href="{{url_for('static',filename='assets/dist/css/bootstrap.min.css')}}"
       rel="stylesheet">
-   
+
     <!-- Header -->
     <link href="{{url_for('static', filename= 'app.css')}}"
       rel="stylesheet">
@@ -37,75 +37,44 @@
         </div>
       </header>
 
-      <main class="px-3">
 
-        <div id="leaderboard">
-          <div id="Geography">
-            <div class="row">
-              <div class="name">Player1</div><div class="score">430</div>
-            </div>
+      <div id="leaderboard">
 
-            <div class="row">
-              <div class="name">Player2</div><div class="score">580</div>
-            </div>
+        <table>
+          <tr>
+            <th> Geography </th>
+            <th> Entertainment </th>
+            <th> History </th>
+            <th> Arts & Literature </th>
+            <th> Science </th>
+            <th> Sports </th>
 
-          </div>
-          <div id="Entertainment">
-            <div class="row">
-              <div class="name">Player1</div><div class="score">430</div>
-            </div>
+          </tr>
+          <tr class="fst">
+            {% for category, ranking in leaderboard.board.items() %}
+            <td class= {{category}}> {{ranking[0][0]}}:{{ranking[0][1]}} </td>
+            {% endfor %}
+          </tr>
+          <tr class="snd">
+            {% for category, ranking in leaderboard.board.items() %}
+            <td class= {{category}}> {{ranking[1][0]}}:{{ranking[1][1]}} </td>
+            {% endfor %}
+          </tr>
+          <tr class="third">
+            {% for category, ranking in leaderboard.board.items() %}
+            <td class= {{category}}> {{ranking[2][0]}}:{{ranking[2][1]}} </td>
+            {% endfor %}
+          </tr>
+          {% for i in range(3, length)%}
+          <tr class="forloop">
+            {% for category, ranking in leaderboard.board.items() %}
+              <td class= {{category}}> {{ranking[i][0]}}:{{ranking[i][1]}} </td>
+              {% endfor %}
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
 
-            <div class="row">
-              <div class="name">Player2</div><div class="score">580</div>
-            </div>
-
-
-          </div>
-          <div id="History">
-            <div class="row">
-              <div class="name">Player1</div><div class="score">430</div>
-            </div>
-
-            <div class="row">
-              <div class="name">Player2</div><div class="score">580</div>
-            </div>
-
-
-          </div>
-          <div id="Arts & Literature">
-            <div class="row">
-              <div class="name">Player1</div><div class="score">430</div>
-            </div>
-
-            <div class="row">
-              <div class="name">Player2</div><div class="score">580</div>
-            </div>
-
-
-          </div>
-          <div id="Science">
-            <div class="row">
-              <div class="name">Player1</div><div class="score">430</div>
-            </div>
-
-            <div class="row">
-              <div class="name">Player2</div><div class="score">580</div>
-            </div>
-
-          </div>
-          <div id="Sports">
-            <div class="row">
-              <div class="name">Player1</div><div class="score">430</div>
-            </div>
-
-            <div class="row">
-              <div class="name">Player2</div><div class="score">580</div>
-            </div>
-
-          </div>
-
-        </div>
-      </main>
 
       <footer class="mt-auto text-white-50">
         <p>DC2060</p>

@@ -9,6 +9,7 @@ from pip._vendor import cachecontrol
 import google.auth.transport.requests
 import quiz 
 from flask_mysqldb import MySQL
+import userStats
  
 app = Flask(__name__)
 app.secret_key = "beans"
@@ -118,13 +119,17 @@ def response(answer):
 @app.route('/leaderboard')
 def leaderboard():
     # call database and create a model of leaderboard 
-    return render_template("Leaderboard.html")
+    leaderboard = userStats.Leaderboard() 
+   
+    length = min(20,(len(leaderboard.board.keys())+1)) 
+    print(length)
+    return render_template("Leaderboard.html", length = length, leaderboard = leaderboard)
 
 @app.route('/stats')
 def stats():
-    # call database a retrive user stats 
+    userS = userStats.UserStats(session['google_id']) 
     
-    return render_template("Stats.html")
+    return render_template("Stats.html", stats = userS)
     
 if __name__ == '__main__': 
     app.run(debug=True)
