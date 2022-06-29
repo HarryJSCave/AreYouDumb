@@ -26,3 +26,4 @@ INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("You are as sma
 INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("I'm as amazed as you are that you got that right!", "P");
 INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("You should buy a lottery ticket because you got lucky", "P");
 INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("I need to fire the person who wrote that question", "P");
+INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("I'm impressed. I mean it shouldn't be impressive but still...", "P");
