@@ -37,7 +37,13 @@ class Question:
         self.options  = [question[self.dba1],question[self.dba2],question[self.dba3],question[self.dba4]]
     
     def alreadyAnswered(self):
-        return False
+        # uncomment if you want to test
+        #return False
+        c = DatabaseConnection()
+        query = "SELECT count(*) from user_responses where QuestionID = \'{}\' and DateTaken = \'{}\'".format(self.id, datetime.date.today()) 
+        count = c.query(query)
+        if (count[0][0] != 0): return True
+        else: return False
 
     def getQuestionOfTheDay(self,data):
         date = datetime.date.today()
