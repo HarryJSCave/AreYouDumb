@@ -63,11 +63,10 @@ def callback():
     id_info = id_token.verify_oauth2_token(
         id_token= credentials._id_token,
         request = token_request,
-        audience = GOOGLE_CLIENT_ID
+        audience = GOOGLE_CLIENT_ID,
+        clock_skew_in_seconds=10
     )
 
-    print("----------------------")
-    print(id_info.get("email"))
 
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
@@ -78,6 +77,9 @@ def logout():
     session.clear()
     return redirect("/")
 
+#
+# 118,443,495,651,743,765,879 
+# 9,223,372,036,854,775,807
 
 ################################################################################
 #
@@ -91,7 +93,8 @@ def index():
 @app.route('/home')
 @login_is_required
 def home():
-
+    newUser = user.User(session['google_id'], session['name'])
+    newUser.addUserToDatabase()
     return render_template("Home.html") 
 
 @app.route('/question/<category>', methods=['GET','POST'])
@@ -120,14 +123,12 @@ def leaderboard():
     # call database and create a model of leaderboard 
     leaderboard = user.Leaderboard() 
    
-    length = min(20,(len(leaderboard.board.keys())+1)) 
-    print(length)
+    length = min(20,(len(leaderboard.board.keys()))) 
     return render_template("Leaderboard.html", length = length, leaderboard = leaderboard)
 
 @app.route('/stats')
 def stats():
     userS = user.UserStats(session['google_id']) 
-    
     return render_template("Stats.html", stats = userS)
     
 if __name__ == '__main__': 

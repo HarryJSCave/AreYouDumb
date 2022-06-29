@@ -43,8 +43,8 @@ class Question:
         date = datetime.date.today()
         dateNum = self.convertDateToNum(date)
         questionNum =  (len(data)-1)%dateNum
-        print(len(data))
-        print(questionNum) 
+        print(len(data)-1)
+        print(questionNum)
         return data[questionNum]
 
     def convertDateToNum(self, date):
@@ -81,11 +81,49 @@ class Result:
         questionID = self.question.id
         anwser = self.userAnswer
         time = self.timeTaken
-        print(self.date)
         date =self.date
         correct = util.boolToBit(self.isCorrect())
-        
         query =  "INSERT INTO user_responses (UserID, QuestionID, Answer, TimeTaken, DateTaken, Correct) VALUES ({}, {}, \'{}\', \'{}\', \'{}\', b\'{}\');".format(userID, questionID, anwser, time, date, correct)
         c.insert(query)
 
        
+def mergeSort(arr):
+    if len(arr) > 1:
+ 
+         # Finding the mid of the array
+        mid = len(arr)//2
+ 
+        # Dividing the array elements
+        L = arr[:mid]
+ 
+        # into 2 halves
+        R = arr[mid:]
+ 
+        # Sorting the first half
+        mergeSort(L)
+ 
+        # Sorting the second half
+        mergeSort(R)
+ 
+        i = j = k = 0
+ 
+        # Copy data to temp arrays L[] and R[]
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+ 
+        # Checking if any element was left
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+ 
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1

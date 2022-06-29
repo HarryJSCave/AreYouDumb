@@ -1,4 +1,5 @@
 DROP TABLE question_responses;
+
 CREATE TABLE question_responses (
   QResponseID INT(11) NOT NULL AUTO_INCREMENT,
   ResponseText varchar(250) NOT NULL,

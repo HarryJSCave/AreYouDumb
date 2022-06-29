@@ -52,23 +52,23 @@
           </tr>
           <tr class="fst">
             {% for category, ranking in leaderboard.board.items() %}
-            <td class= {{category}}> {{ranking[0][0]}}:{{ranking[0][1]}} </td>
+            <td class= {{category}}> {{ranking[0][0]}}   {{ranking[0][1]}} </td>
             {% endfor %}
           </tr>
           <tr class="snd">
             {% for category, ranking in leaderboard.board.items() %}
-            <td class= {{category}}> {{ranking[1][0]}}:{{ranking[1][1]}} </td>
+            <td class= {{category}}> {{ranking[1][0]}}   {{ranking[1][1]}} </td>
             {% endfor %}
           </tr>
           <tr class="third">
             {% for category, ranking in leaderboard.board.items() %}
-            <td class= {{category}}> {{ranking[2][0]}}:{{ranking[2][1]}} </td>
+            <td class= {{category}}> {{ranking[2][0]}}  {{ranking[2][1]}} </td>
             {% endfor %}
           </tr>
           {% for i in range(3, length)%}
           <tr class="forloop">
             {% for category, ranking in leaderboard.board.items() %}
-              <td class= {{category}}> {{ranking[i][0]}}:{{ranking[i][1]}} </td>
+              <td class= {{category}}> {{ranking[i][0]}}  {{ranking[i][1]}} </td>
               {% endfor %}
           </tr>
           {% endfor %}

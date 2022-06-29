@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <title>Home</title>
 
-  
+
         <link
             href="{{url_for('static',filename='assets/dist/css/bootstrap.min.css')}}"
             rel="stylesheet">
@@ -33,8 +33,17 @@
                     href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
                     rel="stylesheet"
                     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-                    crossorigin="anonymous"> 
-                    <a href="/home"><h1>{{response}}</h1></a>                   
+                    crossorigin="anonymous">
+                    {% if result.isCorrect() %}
+                    <h1>
+                        <a href="\home"> <button class = "responce-pos"> {{response}} </button> </a>
+                    </h1>
+                    {% else %}
+                    <h1>
+                        <a href="\home"> <button class = "responce-neg"> {{response}} </button> </a>
+                    </h1>
+                    {% endif %}
+
                 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
                     class="twitter-share-button" data-size="large" data-text="I
                     am very dumb" data-hashtags="BigDumbDumb"
