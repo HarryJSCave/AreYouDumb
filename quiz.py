@@ -1,16 +1,7 @@
-from mimetypes import init
-from MySQLdb import Date
-from flask import Flask, abort, redirect, render_template, request, session
-from flask_wtf import FlaskForm
-from wtforms   import  SubmitField
-from flask_mysqldb import MySQL
-from app import mysql
+from flask import  session
 import util
 from database import DatabaseConnection
-
 import datetime
-
-import time
 
 
 class Question:

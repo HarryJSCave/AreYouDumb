@@ -1,15 +1,15 @@
 import os
 import pathlib
-from unittest import result
 import requests
 from flask import Flask, abort, redirect, render_template, request, session
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
-import quiz 
 from flask_mysqldb import MySQL
 import userStats
+import quiz
+
  
 app = Flask(__name__)
 app.secret_key = "beans"
@@ -18,6 +18,8 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'dc_2060'
 mysql = MySQL(app)
+
+
 
 #Auth and Login 
 ####################################################################

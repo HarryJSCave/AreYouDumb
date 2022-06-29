@@ -1,4 +1,4 @@
-from database import DatabaseConnection
+#
 
 class UserStats:
     def __init__(self, id):
@@ -24,7 +24,7 @@ class UserStats:
             "totalScore": 10000,
             "averageTime":  6.56
             }
-
+        from database import DatabaseConnection
         c = DatabaseConnection()
         query = "SELECT * from questions where Category = \'{}\'".format(self.category) 
         

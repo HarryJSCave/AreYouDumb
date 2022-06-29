@@ -1,13 +1,5 @@
-from mimetypes import init
-from MySQLdb import Date
-from flask import Flask, abort, redirect, render_template, request, session
-from flask_wtf import FlaskForm
-from wtforms   import  SubmitField
-from flask_mysqldb import MySQL
+from flask import session
 from app import mysql
-
-
-
 
 # put this in the database.py and fix 
 class DatabaseConnection: 
@@ -27,7 +19,7 @@ class DatabaseConnection:
             self.cursor = mysql.connection.cursor()
             self.cursor.execute(query)
             mysql.connection.commit()
-        except mysql.connector.Error as error:
+        except mysql.connection.Error as error:
             print("Failed to insert into MySQL table {}".format(error))
         finally:
             self.cursor.close()
