@@ -2,6 +2,7 @@ from flask import  session
 import util
 from database import DatabaseConnection
 import datetime
+import random
 
 
 class Question:
@@ -30,6 +31,7 @@ class Question:
         query = "SELECT * from questions where Category = \'{}\'".format(self.category) 
         data = c.query(query)
         question =  self.getQuestionOfTheDay(data)
+        self.id   = question[self.dbID]
         self.text = question[self.dbtext]
         self.answer = question[self.dbca]
         self.options  = [question[self.dba1],question[self.dba2],question[self.dba3],question[self.dba4]]
@@ -41,6 +43,8 @@ class Question:
         date = datetime.date.today()
         dateNum = self.convertDateToNum(date)
         questionNum =  (len(data)-1)%dateNum
+        print(len(data))
+        print(questionNum) 
         return data[questionNum]
 
     def convertDateToNum(self, date):
@@ -55,6 +59,20 @@ class Result:
 
     def isCorrect(self):
         return  str(self.question.answer) == str(self.userAnswer)
+    
+    def getSentiment(self):
+        return 'N'
+
+    def getResponse(self):
+        c = DatabaseConnection()
+        query = "SELECT ResponseText from question_responses where Sentiment = \'{}\'".format(self.getSentiment()) 
+        data = c.query(query)
+        print(data)
+        index = random.randint(1, len(data))-1
+        return data[index][0]
+
+
+        
 
     def sendToDatabase(self):
         c = DatabaseConnection()
@@ -66,7 +84,7 @@ class Result:
         date =self.date
         correct = util.boolToBit(self.isCorrect())
         
-        query =  "INSERT INTO user_responses (`UserID`, `QuestionID`, `Answer`, `TimeTaken`, `DateTaken`, `Correct`) VALUES ({}, {}, \'{}\', \'{}\', \'{}\', b\'{}\');".format(userID, questionID, anwser, time, date, correct)
+        query =  "INSERT INTO user_responses (UserID, QuestionID, Answer, TimeTaken, DateTaken, Correct) VALUES ({}, {}, \'{}\', \'{}\', \'{}\', b\'{}\');".format(userID, questionID, anwser, time, date, correct)
         c.insert(query)
 
        

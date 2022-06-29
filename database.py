@@ -7,6 +7,7 @@ class DatabaseConnection:
         sql = "sql"
 
     def query(self, query):
+        print(query)
         self.cursor = mysql.connection.cursor()
         self.cursor.execute(query)
         data = self.cursor.fetchall()

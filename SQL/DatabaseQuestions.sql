@@ -81,8 +81,8 @@ VALUES ('What year was the Wall Street Crash?', '1926', '1927', '1929', '1928', 
 
 /*--Art & Literature questions*/
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
-VALUES('Who wrote "Old Man and The Sea"?', 'J.R.R. Tolkien', 'George Orwell', 'Ernest Hemingway', 'Charles Dickens', 'Ernest Hemingway', 'Art & Literature');
+VALUES('Who wrote "Old Man and The Sea"?', 'J.R.R. Tolkien', 'George Orwell', 'Ernest Hemingway', 'Charles Dickens', 'Ernest Hemingway', 'Art');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
-VALUES('Who wrote The Merchant of Venice?', 'Jane Austen', 'William Shakespeare', 'Paul Allen', 'John Steinbeck', 'William Shakespeare', 'Art & Literature');
+VALUES('Who wrote The Merchant of Venice?', 'Jane Austen', 'William Shakespeare', 'Paul Allen', 'John Steinbeck', 'William Shakespeare', 'Art');
 INSERT INTO questions (QuestionText, A1, A2, A3, A4, CA, Category)
-VALUES('Claude Monet is most known for his paintings of what?', 'People', 'Sunflowers', 'Landscapes', 'Water lilies', 'Water lilies', 'Art & Literature');
+VALUES('Claude Monet is most known for his paintings of what?', 'People', 'Sunflowers', 'Landscapes', 'Water lilies', 'Water lilies', 'Art);

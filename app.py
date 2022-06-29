@@ -1,5 +1,6 @@
 import os
 import pathlib
+from urllib import response
 import requests
 from flask import Flask, abort, redirect, render_template, request, session
 from google.oauth2 import id_token
@@ -7,7 +8,7 @@ from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
 import google.auth.transport.requests
 from flask_mysqldb import MySQL
-import userStats
+import user
 import quiz
 
  
@@ -110,18 +111,14 @@ def askQuestion(category):
     else:
         result = quiz.Result(question, request.form['answer'], request.form['timerForm']) 
         result.sendToDatabase()
-        return render_template('response.html', result = result)
+        r = result.getResponse()
+        return render_template('response.html', result = result, response = r)
 
-
-@app.route('/question/response')
-def response(answer):
-    # return postive or negative response
-    return render_template("response.html")
 
 @app.route('/leaderboard')
 def leaderboard():
     # call database and create a model of leaderboard 
-    leaderboard = userStats.Leaderboard() 
+    leaderboard = user.Leaderboard() 
    
     length = min(20,(len(leaderboard.board.keys())+1)) 
     print(length)
@@ -129,7 +126,7 @@ def leaderboard():
 
 @app.route('/stats')
 def stats():
-    userS = userStats.UserStats(session['google_id']) 
+    userS = user.UserStats(session['google_id']) 
     
     return render_template("Stats.html", stats = userS)
     
