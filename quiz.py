@@ -61,7 +61,8 @@ class Result:
         return  str(self.question.answer) == str(self.userAnswer)
     
     def getSentiment(self):
-        return 'N'
+        if self.isCorrect(): return "P"
+        else: return "N"
 
     def getResponse(self):
         c = DatabaseConnection()

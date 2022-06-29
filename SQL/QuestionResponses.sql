@@ -14,4 +14,8 @@ INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("You have one b
 INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("Internet Explorer would have worked quicker than you.", "N");
 INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("The wheel is spinning but the hamster's dead.", "N");
 INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("At this point you can only impress me.", "N");
-INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("You're doing amazing sweetie", "P");
+INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("Next time you get wrong there will be consequences", "N");
+INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("You're doing amazing sweetie :)", "P");
+INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("You only go that that right because you cheated!", "P");
+INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("Yeah it's correct but you still can't live forever, weak human!", "P");
+INSERT INTO question_responses (ResponseText, Sentiment) VALUES ("You are as smart as Fish with a really big brain", "P");
