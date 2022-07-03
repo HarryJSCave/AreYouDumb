@@ -1,11 +1,12 @@
 from flask import session
 from app import mysql
 
-# put this in the database.py and fix 
+
 class DatabaseConnection: 
     def __init__(self):
         sql = "sql"
-
+    
+    # query the database
     def query(self, query):
         print(query)
         try:
@@ -19,6 +20,7 @@ class DatabaseConnection:
             self.cursor.close()
             return data
     
+    # insert into the data base 
     def insert(self, query):
         print(query)
         try:

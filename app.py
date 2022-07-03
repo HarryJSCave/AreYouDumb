@@ -46,18 +46,17 @@ def login_is_required(function):
 def login():
     authorization_url, state = flow.authorization_url()
     session["state"] = state
-   
-
     return redirect(authorization_url)
 
 @app.route('/callback')
 def callback():
+    # ngl just going to have to trust the api on this one
     flow.fetch_token(authorization_response=request.url)
     if not session["state"] == request.args["state"]:
         abort(500) # state does not match
     
     credentials = flow.credentials 
-    request_session = requests.session()
+    request_session = requests.session() 
     cached_session = cachecontrol.CacheControl(request_session)
     token_request = google.auth.transport.requests.Request(session = cached_session)
     id_info = id_token.verify_oauth2_token(
@@ -66,20 +65,16 @@ def callback():
         audience = GOOGLE_CLIENT_ID,
         clock_skew_in_seconds=10
     )
-
-
-    session["google_id"] = id_info.get("sub")
-    session["name"] = id_info.get("name")
+    session["google_id"] = id_info.get("sub") # massive int for users 
+    session["name"] = id_info.get("name")     # nickname
     return redirect("/home")
 
+# does what is says on the tin 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect("/")
 
-#
-# 118,443,495,651,743,765,879 
-# 9,223,372,036,854,775,807
 
 ################################################################################
 #
@@ -106,11 +101,8 @@ def askQuestion(category):
     if request.method == 'GET':
         if (question.alreadyAnswered()):
             return render_template("AlreadyCompleted.html", question = question)
-        else:
-            
-            return render_template("Question.html", question = question)
-
-            
+        else:       
+            return render_template("Question.html", question = question)         
     else:
         result = quiz.Result(question, request.form['answer'], request.form['timerForm']) 
         result.sendToDatabase()
@@ -122,7 +114,6 @@ def askQuestion(category):
 def leaderboard():
     # call database and create a model of leaderboard 
     leaderboard = user.Leaderboard() 
-   
     length = min(20,(len(leaderboard.board.keys()))) 
     return render_template("Leaderboard.html", length = length, leaderboard = leaderboard)
 

@@ -30,12 +30,12 @@ class UserStats:
         
         
         self.id = id
-        self.stats =  { "Geography":        self.grabStats("Geography"),
-                        "Entertainment":  self.grabStats("Entertainment"), 
-                        "History":        self.grabStats("History"),
-                        "Art":            self.grabStats("Art"),
-                        "Science":        self.grabStats("Science"),
-                        "Sport":          self.grabStats("Sports")}
+        self.stats =  { "Geography":          self.grabStats("Geography"),
+                        "Entertainment":      self.grabStats("Entertainment"), 
+                        "History":            self.grabStats("History"),
+                        "Art & Literature":   self.grabStats("Art"),
+                        "Science":            self.grabStats("Science"),
+                        "Sport":              self.grabStats("Sports")}
         self.updateLeaderboardDatabase()
 
     def  entryExists(self, category):
@@ -43,7 +43,6 @@ class UserStats:
         c = DatabaseConnection()
         query = "SELECT COUNT(*) from leaderboard where Category = \'{}\' AND UserID = {}".format(category, self.id) 
         count = c.query(query)
-        print(count[0][0])
         if (count[0][0] != 0): return True
         else: return False
 
@@ -54,14 +53,12 @@ class UserStats:
         for category in self.stats:
             
             entryExists = self.entryExists(category)
-            print(entryExists)
             if (entryExists):
                 query =  """UPDATE `leaderboard`
                             SET `TotalScore`= {}, `AverageTime` = {}, `TotalPlays` = {}
                             WHERE UserID = \'{}\' AND Category = \'{}\'  ;""".format(self.stats[category]['totalScore'], self.stats[category]['averageTime'], self.stats[category]['plays'], self.id, category)
                 c.insert(query)
             else:
-                print(self.stats[category])
                 query =  """INSERT INTO `leaderboard` (`UserID`, `TotalScore`, `AverageTime`, `TotalPlays`, `Category`) 
                 VALUES (\'{}\', {}, {}, {}, \'{}\');""".format(self.id, self.stats[category]['totalScore'], self.stats[category]['averageTime'], self.stats[category]['plays'], category)
                 c.insert(query)
@@ -88,7 +85,7 @@ class UserStats:
         
         correctPlays = c.query(correctPlaysQ)
         for time in correctPlays:
-            score += 1000/(1+(time[0]*10))
+            score += 1000/(1+(time[0]*5))
         
         return round(score)
 
@@ -121,11 +118,12 @@ class Leaderboard:
         self.board =  { "Geography":       self.getRanking("Geography"), #[playername:score]
                         "Entertainment":  self.getRanking("Entertainment"), 
                         "History":        self.getRanking("History"),
-                        "Art":            self.getRanking("Art"),
+                        "Art":            self.getRanking("Art & Literature"),
                         "Science":        self.getRanking("Science"),
                         "Sport":          self.getRanking("Sport")}
         pass
 
+    # gets the user name for the leader board
     def getUsername(self, userID):
         from database import DatabaseConnection
         c = DatabaseConnection()
@@ -134,21 +132,20 @@ class Leaderboard:
         data = c.query(q)
         return data[0][0]
 
+    # gets the leader board ranking for the a cataegory 
     def getRanking(self, category):
         from database import DatabaseConnection
         c = DatabaseConnection()
         q = """ SELECT TotalScore, UserID FROM leaderboard WHERE  Category = \'{}\'
                         """.format(category) 
         data = c.query(q)
-        print(data)
         ranking= []
         for user in data: 
             entry = (self.getUsername(user[1]), user[0])
             ranking.append(entry)
-        
-        print(len(ranking))
+     
         if (len(ranking) < 4):
-            # dumby data for if there are no players 
+            # dumby data for if there are no players should really put this in the sql 
             ranking.append(("Hero",14000))
             ranking.append(("Noob",100))
             ranking.append(("WhatsMyName",50))
@@ -157,6 +154,7 @@ class Leaderboard:
         self.sortRanking(ranking)
         return ranking
 
+    # actully sorts the list using a merge sort 
     def sortRanking(self, ranking):
         if len(ranking) > 1: 
             # Finding the mid of the array

@@ -37,6 +37,7 @@
                     {% if result.isCorrect() %}
                     <h1>
                         <a href="\home"> <button class = "responce-pos"> {{response}} </button> </a>
+                        <h1> You scored {{result.calcScore()}} points </h1>
                     </h1>
                     {% else %}
                     <h1>
@@ -45,8 +46,7 @@
                     {% endif %}
 
                 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-                    class="twitter-share-button" data-size="large" data-text="I
-                    am very dumb" data-hashtags="BigDumbDumb"
+                    class="twitter-share-button" data-size="large" data-text= "I am very dumb I could only score {{result.calcScore()}} points" data-hashtags="BigDumbDumb"
                     data-show-count="false">Tweet</a><script async
                     src="https://platform.twitter.com/widgets.js"
                     charset="utf-8"></script>

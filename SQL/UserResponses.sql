@@ -1,7 +1,7 @@
-
+DROP TABLE user_responses;
 CREATE TABLE user_responses(
     ResponseID INT NOT NULL AUTO_INCREMENT, 
-	UserID varchar (128) NOT NULL,
+	UserID varchar (128),
     QuestionID INT NOT NULL,
 	Answer TEXT NOT NULL,
     TimeTaken FLOAT NOT NULL,

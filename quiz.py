@@ -16,7 +16,7 @@ class Question:
         self.dba4   = 5
         self.dbca   = 6
         
-        # 
+        # just the defualts
         self.category = category
         self.id = 0
         self.text = "Error"
@@ -24,11 +24,12 @@ class Question:
         self.options = [" ", " ", " ", " "]
         self.createQuestion()
 
+
     def createQuestion(self):
         c = DatabaseConnection()
         query = "SELECT * from questions where Category = \'{}\'".format(self.category) 
         data = c.query(query)
-
+        # only runs if there is no error
         if len(data) != 0: 
             question =  self.getQuestionOfTheDay(data)
             self.id   = question[self.dbID]
@@ -48,11 +49,12 @@ class Question:
     def getQuestionOfTheDay(self, data):
         date = datetime.date.today()
         dateNum = self.convertDateToNum(date)
-        questionNum =  (len(data)-1)%dateNum
+        questionNum =  dateNum%(len(data))
         return data[questionNum]
 
     def convertDateToNum(self, date):
-        return date.day + date.month + date.year 
+        return int(str(date.year) + str(date.month) + str(date.day))
+        
 
 class Result:
     def __init__(self, question, userAnswer, time):
@@ -67,6 +69,12 @@ class Result:
     def getSentiment(self):
         if self.isCorrect(): return "P"
         else: return "N"
+
+    def calcScore(self):
+        if self.isCorrect():
+            return round(1000/(1+(float(self.timeTaken)*5)))
+        else:
+            return 0
 
     def getResponse(self):
         c = DatabaseConnection()
@@ -86,44 +94,3 @@ class Result:
         query =  "INSERT INTO user_responses (UserID, QuestionID, Answer, TimeTaken, DateTaken, Correct) VALUES ({}, {}, \'{}\', \'{}\', \'{}\', b\'{}\');".format(userID, questionID, anwser, time, date, correct)
         c.insert(query)
 
-       
-def mergeSort(arr):
-    if len(arr) > 1:
- 
-         # Finding the mid of the array
-        mid = len(arr)//2
- 
-        # Dividing the array elements
-        L = arr[:mid]
- 
-        # into 2 halves
-        R = arr[mid:]
- 
-        # Sorting the first half
-        mergeSort(L)
- 
-        # Sorting the second half
-        mergeSort(R)
- 
-        i = j = k = 0
- 
-        # Copy data to temp arrays L[] and R[]
-        while i < len(L) and j < len(R):
-            if L[i] < R[j]:
-                arr[k] = L[i]
-                i += 1
-            else:
-                arr[k] = R[j]
-                j += 1
-            k += 1
- 
-        # Checking if any element was left
-        while i < len(L):
-            arr[k] = L[i]
-            i += 1
-            k += 1
- 
-        while j < len(R):
-            arr[k] = R[j]
-            j += 1
-            k += 1
