@@ -64,6 +64,28 @@ a:active { text-decoration: none; }
   color: white;
 }
 
+.stats
+{
+  margin:auto;
+  width: 70%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #FFFFFF;
+  background-color: #333;
+  color: white;
+}
+
+.stats-cat
+{
+
+
+  margin-right: 50px;
+  margin-left: 50px;
+}
 
 .cover-container {
   max-width: 500em;

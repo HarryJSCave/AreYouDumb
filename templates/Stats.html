@@ -38,25 +38,26 @@
 
       <main class="px-2">
         <div class="panel-body">
-          <div class="categories">
+          <div class="stats">
             {% for category, statDict in stats.stats.items() %}
-            <div class="panel-body">
+            <div class="stats-cat">
               <div>
-                <span> {{category}} </span>
+                <span>- {{category}} -</span>
               </div>
               <div>
-                <span> Score: {{statDict.totalScore}} </span>
+                <span> Score: </span>
+                <span> {{statDict.totalScore}} </span>
               </div>
               <div>
-                <span> Average Time: {{statDict.averageTime}} </span>
+                <span> Average Time: </span>
+                <span> {{statDict.averageTime}} </span>
               </div>
               <div>
-                <span> Plays: {{statDict.plays}} </span>
+                <span> Plays: </span>
+                <span>  {{statDict.plays}} </span>
               </div>
             </div>
-            <div>
-              ---------------------------------
-            </div>
+        
 
             {% endfor %}
 

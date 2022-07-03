@@ -8,11 +8,16 @@ class DatabaseConnection:
 
     def query(self, query):
         print(query)
-        self.cursor = mysql.connection.cursor()
-        self.cursor.execute(query)
-        data = self.cursor.fetchall()
-        self.cursor.close()
-        return data
+        try:
+            self.cursor = mysql.connection.cursor()
+            self.cursor.execute(query)
+            data = self.cursor.fetchall()
+        except mysql.connection.Error as error:
+            print("Failed to query MySQL table {}".format(error))
+            data = []
+        finally:
+            self.cursor.close()
+            return data
     
     def insert(self, query):
         print(query)

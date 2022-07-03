@@ -39,7 +39,6 @@ class UserStats:
         self.updateLeaderboardDatabase()
 
     def  entryExists(self, category):
-        
         from database import DatabaseConnection
         c = DatabaseConnection()
         query = "SELECT COUNT(*) from leaderboard where Category = \'{}\' AND UserID = {}".format(category, self.id) 

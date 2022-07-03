@@ -19,22 +19,22 @@ class Question:
         # 
         self.category = category
         self.id = 0
-        self.text = ""
-        self.answer = ""
-        self.options = []
+        self.text = "Error"
+        self.answer = "Error"
+        self.options = [" ", " ", " ", " "]
         self.createQuestion()
-
-        
 
     def createQuestion(self):
         c = DatabaseConnection()
         query = "SELECT * from questions where Category = \'{}\'".format(self.category) 
         data = c.query(query)
-        question =  self.getQuestionOfTheDay(data)
-        self.id   = question[self.dbID]
-        self.text = question[self.dbtext]
-        self.answer = question[self.dbca]
-        self.options  = [question[self.dba1],question[self.dba2],question[self.dba3],question[self.dba4]]
+
+        if len(data) != 0: 
+            question =  self.getQuestionOfTheDay(data)
+            self.id   = question[self.dbID]
+            self.text = question[self.dbtext]
+            self.answer = question[self.dbca]
+            self.options  = [question[self.dba1],question[self.dba2],question[self.dba3],question[self.dba4]]
     
     def alreadyAnswered(self):
         # uncomment if you want to test
@@ -45,12 +45,10 @@ class Question:
         if (count[0][0] != 0): return True
         else: return False
 
-    def getQuestionOfTheDay(self,data):
+    def getQuestionOfTheDay(self, data):
         date = datetime.date.today()
         dateNum = self.convertDateToNum(date)
         questionNum =  (len(data)-1)%dateNum
-        print(len(data)-1)
-        print(questionNum)
         return data[questionNum]
 
     def convertDateToNum(self, date):
@@ -74,12 +72,8 @@ class Result:
         c = DatabaseConnection()
         query = "SELECT ResponseText from question_responses where Sentiment = \'{}\'".format(self.getSentiment()) 
         data = c.query(query)
-        print(data)
         index = random.randint(1, len(data))-1
         return data[index][0]
-
-
-        
 
     def sendToDatabase(self):
         c = DatabaseConnection()
